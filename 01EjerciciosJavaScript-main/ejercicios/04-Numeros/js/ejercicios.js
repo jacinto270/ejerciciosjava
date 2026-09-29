@@ -13,13 +13,21 @@ Recuerda que prompt() siempre devuelve un string.
 console.log("--- Ejercicio 1 ---");
 
 // Escribe aquí tu solución
+let numero = prompt("Introduce el número decimal")
+
+console.log(numero)
+// devuelve el tipo de dato
+console.log(typeof(numero))
+// redondea al numero mas cercano
+console.log("entero mas cercano")
+console.log(Math.round(numero))
 
 
 // Ejercicio 2
 // Escribe una función que reciba un número y devuelva su valor absoluto utilizando Math.abs().
 console.log("--- Ejercicio 2 ---");
-
-// Escribe aquí tu solución
+console.log("valor absoluto")
+console.log(Math.abs(numero))
 
 
 // Ejercicio 3
@@ -27,6 +35,14 @@ console.log("--- Ejercicio 2 ---");
 console.log("--- Ejercicio 3 ---");
 
 // Escribe aquí tu solución
+// aqui genero un numero aleatorio entre 1 y 100
+
+let aleatorio = Math.random() * 100 +1
+
+// quito los decimales al numero aleatorio
+aleatorio = Math.round(aleatorio)
+
+console.log(aleatorio)
 
 
 // Ejercicio 4

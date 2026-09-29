@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calculadora ACME</h1>
+    
+        <label for="numero1">numero1</label>
+        <input type="number" id="numero1" name="numero1">
+         <label for="numero2">numero2</label>
+        <input type="number" id="numero2" name="numero2">
+        <button id="sumar">Sumar</button>
+        <button id="restar">Restar</button>
+        <button id="multiplicar">Multiplicar</button>
+        <button id="dividir">Dividir</button>
+    
+<h2 id="resultado"></h2>
+
+<script>
+    const btnSumar = document.querySelector("#sumar")
+    const btnRestar = document.querySelector("#restar")
+    const btnMultiplicar = document.querySelector("#multiplicar")
+    const btnDividir = document.querySelector("#dividir")
+    const inputNumero1 = document.querySelector("#numero1")
+    const inputNumero2 = document.querySelector("#numero2")
+    let resultado = document.querySelector("#resultado")
+    
+    btnSumar.addEventListener("click", (e) =>{
+        console.log("Has pulsado sumar")
+        console.log(e.currentTarget)
+        
+        // mostrar ne resultado la suma de los valores que haya en los input
+
+        let numero1 = inputNumero1.value
+        let numero2 = inputNumero2.value
+
+        
+        // comprobar que los datos son correctos
+        numero1 = parseFloat(numero1)
+        numero2 = parseFloat(numero2)
+        if(Number.isNaN(numero1)){
+            resultado.innerHTML = "introduce un numero para poder realizar la operacion"
+        }else if(Number.isNaN(numero2)){
+            resultado.innerHTML = "introduce un numero en el segundo campo para poder realizar la operacion"
+
+        }else{
+            let suma = numero1 + numero2
+            let resultadoTxt = `el resultado de la suma de ${numero1} + ${numero2} : ${suma}`
+            resultado.innerHTML = resultadoTxt
+        }
+
+
+        // let suma = parseFloat(numero1) + parseFloat(numero2)
+        // console.log("la suma es " + suma)
+
+        // let resultadoTxt = `el resultado de la suma de ${numero1} + ${numero2} es: ${suma}`
+        // // resultado.innerHTML = "El resultado de la suma de " + numero1 + " + " + numero2 + " es: " + suma
+        // resultado.innerHTML = resultadoTxt
+
+
+    } )
+
+     
+
+      btnRestar.addEventListener("click", (e) =>{
+        console.log("Has pulsado restar")
+        console.log(e.currentTarget)
+        
+        // mostrar el resultado la resta de los valores que haya en los input
+
+        let numero1 = inputNumero1.value
+        let numero2 = inputNumero2.value
+
+        let resta = parseFloat(numero1) - parseFloat(numero2)
+        console.log("la resta es " + resta)
+        resultado.innerHTML = "El resultado de la resta de " + numero1 + " - " + numero2 + " es: " + resta
+
+
+    } )
+
+
+     btnMultiplicar.addEventListener("click", (e) =>{
+        console.log("Has pulsado multiplicar")
+        console.log(e.currentTarget)
+        
+        // mostrar ne resultado la multiplicacion de los valores que haya en los input
+
+        let numero1 = inputNumero1.value
+        let numero2 = inputNumero2.value
+
+        let multiplicar = parseFloat(numero1) * parseFloat(numero2)
+        console.log("la multiplicación es " + multiplicar)
+        resultado.innerHTML = "El resultado de la multiplicacion de " + numero1 + " * " + numero2 + " es: " + multiplicar
+
+
+    } )
+
+     btnDividir.addEventListener("click", (e) =>{
+        console.log("Has pulsado dividir")
+        console.log(e.currentTarget)
+        
+        // mostrar ne resultado la division de los valores que haya en los input
+
+        let numero1 = inputNumero1.value
+        let numero2 = inputNumero2.value
+
+
+
+
+
+        let dividir = parseFloat(numero1) % parseFloat(numero2)
+        console.log("la division es " + dividir)
+        resultado.innerHTML = "El resultado de la division de " + numero1 + " % " + numero2 + " es: " + multiplicar
+
+
+    } )
+
+
+
+    
+
+
+</script>
+
+
+</body>
+</html>

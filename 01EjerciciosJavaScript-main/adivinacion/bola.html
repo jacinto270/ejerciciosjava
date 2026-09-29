@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bola de cristal</title>
+<style>
+  /* Sin fondo: la página es transparente */
+  html, body { margin: 0; height: 100%; background: transparent; }
+  body { display: grid; place-items: center; }
+
+  /* Tamaño de la bola: cambia solo esta variable */
+  .orb-wrap { --size: min(70vmin, 420px); width: var(--size); height: var(--size); animation: float 6s ease-in-out infinite; }
+
+  .orb {
+    position: relative; width: 100%; height: 100%; border-radius: 50%;
+    overflow: hidden; isolation: isolate;
+    background: radial-gradient(circle at 35% 30%, #b9a8ff 0%, #6c56d9 45%, #2c1f78 100%);
+    box-shadow:
+      inset 0 0 0 3px #5a46c8,
+      inset 0 0 40px 10px rgba(255,255,255,.25),
+      inset -20px -30px 60px rgba(20,10,80,.6),
+      0 0 60px 8px rgba(140,110,255,.45);
+    animation: glow 4s ease-in-out infinite;
+  }
+
+  /* Niebla interior */
+  .fog {
+    position: absolute; width: 200%; height: 60%; left: -50%; border-radius: 50%;
+    filter: blur(18px); opacity: .55;
+  }
+  .fog.a { top: 40%; background: #c9b8ff; animation: drift 9s ease-in-out infinite alternate; }
+  .fog.b { top: 62%; background: #8a72f0; opacity: .7; animation: drift 12s ease-in-out infinite alternate-reverse; }
+  .fog.c { top: 18%; background: #e6dcff; opacity: .35; animation: drift 15s ease-in-out infinite alternate; }
+
+  /* Estrellas */
+  .star {
+    position: absolute; width: 4px; height: 4px; border-radius: 50%;
+    background: #fff; box-shadow: 0 0 6px 2px rgba(255,255,255,.7);
+    animation: twinkle 2.4s ease-in-out infinite;
+  }
+  .star:nth-child(4)  { top: 22%; left: 30%; animation-delay: 0s; }
+  .star:nth-child(5)  { top: 30%; left: 68%; animation-delay: .5s; width: 3px; height: 3px; }
+  .star:nth-child(6)  { top: 52%; left: 42%; animation-delay: 1s;  width: 6px; height: 6px; background: #ffe9a8; }
+  .star:nth-child(7)  { top: 66%; left: 72%; animation-delay: 1.4s; }
+  .star:nth-child(8)  { top: 44%; left: 22%; animation-delay: .8s; width: 3px; height: 3px; }
+  .star:nth-child(9)  { top: 74%; left: 30%; animation-delay: 1.9s; width: 3px; height: 3px; }
+  .star:nth-child(10) { top: 16%; left: 52%; animation-delay: .3s; width: 3px; height: 3px; }
+
+  /* Reflejos */
+  .shine {
+    position: absolute; top: 9%; left: 14%; width: 46%; height: 30%;
+    border-radius: 50%; transform: rotate(-35deg);
+    background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,0));
+    animation: shimmer 5s ease-in-out infinite;
+  }
+  .dot { position: absolute; top: 44%; left: 9%; width: 3%; height: 3%; border-radius: 50%; background: rgba(255,255,255,.85); }
+  .rim {
+    position: absolute; inset: 0; border-radius: 50%;
+    background: linear-gradient(140deg, transparent 62%, rgba(255,255,255,.35) 80%, transparent 90%);
+  }
+
+  @keyframes float   { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  @keyframes glow    { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.12); } }
+  @keyframes drift   { from { transform: translateX(-12%) rotate(-2deg); } to { transform: translateX(12%) rotate(2deg); } }
+  @keyframes twinkle { 0%,100% { opacity: .15; transform: scale(.6); } 50% { opacity: 1; transform: scale(1.3); } }
+  @keyframes shimmer { 0%,100% { opacity: .75; } 50% { opacity: 1; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .orb-wrap, .orb, .fog, .star, .shine { animation: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="orb-wrap" role="img" aria-label="Bola de cristal de adivinación">
+    <div id="imgbola" class="orb">
+      <div class="fog a"></div>
+      <div class="fog b"></div>
+      <div class="fog c"></div>
+      <div class="star"></div><div class="star"></div><div class="star"></div>
+      <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+      <div class="rim"></div>
+      <div class="shine"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+  <button id="Prueba-suerte">prueba suerte</button>
+  <h2 id="resultados"></h2>
+  <script>
+
+    const btnprueba = document.querySelector("#Prueba-suerte")
+    const txtresultado = document.querySelector("#resultados")
+    const bola = document.querySelector("#imgbola")
+
+    const numeros = [4, 5, 7, 2, 9]
+    console.log(numeros)
+    console.log(numeros[0])
+
+    const frases = [
+        "te va a tocar la loteria",
+        "te van a subir el sueldo",
+        "vas a cobrar una donacion de in tio en america",
+        "vas a sacar muy buenas notas",
+        "te vas a compar el coche de tus sueños",
+        "vas a sacar muy buenas notas",
+        "tu codigo no va a tener errores",
+        "tu compañero no se va a copiar"
+
+    ]
+    // frases.length devuelve el numero de elementos que tiene al array
+    numeroFrases = frases.length
+    // console.log(frases.length)
+    console.log(frases[3])
+
+    // const indice = Math.floor(Math.random() * numeroFrases)
+    // txtresultado.innerHTML = frases[indice]
+
+    btnprueba.addEventListener("click", () => {
+        const indice = Math.floor(Math.random() * frases.length)
+        txtresultado.innerHTML = frases[indice]
+
+        bola.classList.remove("orb");
+        setTimeout(() => {
+            bola.classList.add("orb")
+        }, 1000)
+       
+    })
+
+ </script>
+</body>
+</html>
